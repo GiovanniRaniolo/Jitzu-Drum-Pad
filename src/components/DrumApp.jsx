@@ -63,7 +63,7 @@ const DrumMachine = ({ displayTextDefault = "Jitzu Drum Pad App" }) => {
 
       <div className="drum-control">
         <div className="drum-control-volumn">
-          <i className="fas fa-volume-down" ref={iconVolume}></i>
+          <i className="" ref={iconVolume}></i>
           <span> volume</span>
           <span className="drum-control-volumn-value" ref={displayVolumeValue}>
             {volumeValue}

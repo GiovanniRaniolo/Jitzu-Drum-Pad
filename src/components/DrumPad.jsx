@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
+import "./DrumPad.css";
 
 const DrumPad = ({ text, src, volume, updateDisplayText }) => {
   const [isActive, setIsActive] = useState(false);

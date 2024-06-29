@@ -30,7 +30,6 @@ const DrumPad = ({ text, src, volume, updateDisplayText }) => {
   };
 
   const handleTouchStart = (event) => {
-    // event.preventDefault();
     setIsActive(true);
     play();
     simulateRelease();

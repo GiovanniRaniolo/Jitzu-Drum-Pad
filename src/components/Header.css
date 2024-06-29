@@ -9,8 +9,8 @@
   margin-top: 24px;
   font-weight: 300;
   letter-spacing: 0.3rem;
-  background: -webkit-linear-gradient(#979797, #ff8c09);
-  -webkit-background-clip: text;
+  background: -webkit-linear-gradient(#cfcece, #ff8c09);
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 

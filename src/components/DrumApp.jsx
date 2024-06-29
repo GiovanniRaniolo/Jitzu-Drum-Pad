@@ -3,23 +3,39 @@ import DrumPad from "./DrumPad";
 import "../App.css";
 
 const bankOne = [
-  { keyCode: 81, keyTrigger: "Q", id: "", url: "/samples/808_Bass.wav" },
-  { keyCode: 87, keyTrigger: "W", id: "", url: "/samples/Tom.wav" },
-  { keyCode: 69, keyTrigger: "E", id: "", url: "/samples/Rim_9.wav" },
-  { keyCode: 82, keyTrigger: "R", id: "", url: "/samples/Rim_8.wav" },
-  { keyCode: 65, keyTrigger: "A", id: "", url: "/samples/Kick_1.wav" },
-  { keyCode: 83, keyTrigger: "S", id: "", url: "/samples/Rim_6.wav" },
-  { keyCode: 68, keyTrigger: "D", id: "", url: "/samples/Snare_02.wav" },
-  { keyCode: 70, keyTrigger: "F", id: "", url: "/samples/Kick_5.wav" },
-  { keyCode: 90, keyTrigger: "Z", id: "", url: "/samples/Hat_2.wav" },
-  { keyCode: 88, keyTrigger: "X", id: "", url: "/samples/Hat_5.wav" },
-  { keyCode: 67, keyTrigger: "C", id: "", url: "/samples/Hat_6.wav" },
-  { keyCode: 86, keyTrigger: "V", id: "", url: "/samples/Rim_2.wav" },
-  { keyCode: 66, keyTrigger: "B", id: "", url: "/samples/Rim_3.wav" },
-  { keyCode: 78, keyTrigger: "N", id: "", url: "/samples/Shaker_5.wav" },
-  { keyCode: 77, keyTrigger: "M", id: "", url: "/samples/Sharp_Bass.wav" },
-  { keyCode: 76, keyTrigger: "L", id: "", url: "/samples/Vocoder_Fx.wav" },
+  { keyCode: 52, keyTrigger: "4", id: "stab-1", url: "/samples/stab-1.mp3" },
+  { keyCode: 53, keyTrigger: "5", id: "stab-2", url: "/samples/stab-2.mp3" },
+  { keyCode: 54, keyTrigger: "6", id: "stab-3", url: "/samples/stab-3.mp3" },
+  { keyCode: 55, keyTrigger: "7", id: "noise", url: "/samples/noise.mp3" },
+  { keyCode: 69, keyTrigger: "E", id: "hat-2", url: "/samples/hat-2.mp3" },
+  { keyCode: 82, keyTrigger: "R", id: "kick-1", url: "/samples/kick-1.mp3" },
+  { keyCode: 89, keyTrigger: "Y", id: "kick-2", url: "/samples/kick-2.mp3" },
+  { keyCode: 85, keyTrigger: "U", id: "hat-1", url: "/samples/hat-1.mp3" },
+  { keyCode: 68, keyTrigger: "D", id: "snare-1", url: "/samples/snare-1.mp3" },
+  {
+    keyCode: 70,
+    keyTrigger: "F",
+    id: "tambourine",
+    url: "/samples/tambourine.mp3",
+  },
+  {
+    keyCode: 71,
+    keyTrigger: "G",
+    id: "shaker-1",
+    url: "/samples/shaker-1.mp3",
+  },
+  { keyCode: 72, keyTrigger: "H", id: "snare-2", url: "/samples/snare-2.mp3" },
+  {
+    keyCode: 88,
+    keyTrigger: "X",
+    id: "shaker-2",
+    url: "/samples/shaker-2.mp3",
+  },
+  { keyCode: 67, keyTrigger: "C", id: "rim", url: "/samples/rim.mp3" },
+  { keyCode: 66, keyTrigger: "B", id: "bongo-2", url: "/samples/bongo-2.mp3" },
+  { keyCode: 78, keyTrigger: "N", id: "crash", url: "/samples/crash.mp3" },
 ];
+
 const DrumMachine = ({ displayTextDefault = "Jitzu Drum Pad App" }) => {
   const volumeHandler = useRef(null);
   const iconVolume = useRef(null);

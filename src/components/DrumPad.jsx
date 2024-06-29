@@ -17,12 +17,25 @@ const DrumPad = ({ text, src, volume, updateDisplayText }) => {
     );
   };
 
-  const handleMouseDown = () => {
+  const handleMouseDown = (event) => {
+    event.preventDefault();
     setIsActive(true);
     play();
   };
 
-  const handleMouseUp = () => {
+  const handleMouseUp = (event) => {
+    event.preventDefault();
+    setIsActive(false);
+  };
+
+  const handleTouchStart = (event) => {
+    event.preventDefault();
+    setIsActive(true);
+    play();
+  };
+
+  const handleTouchEnd = (event) => {
+    event.preventDefault();
     setIsActive(false);
   };
 
@@ -51,6 +64,8 @@ const DrumPad = ({ text, src, volume, updateDisplayText }) => {
       ref={pad}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       <audio className="clip" src={src} id={text}></audio>
       {text}

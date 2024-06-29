@@ -2,6 +2,8 @@
 
 Jitzu Drum Pad App is a web application that allows you to play samples using your computer keyboard or by tapping on the screen.
 
+[TRY IT NOW](https://jitzu-drum-pad.vercel.app)
+
 ![Screenshot of the application](./public/screenshoot.png)
 
 ## Key Features
@@ -12,13 +14,15 @@ Jitzu Drum Pad App is a web application that allows you to play samples using yo
 
 ## How to Use
 
+1. **Site**: Go to this link: https://jitzu-drum-pad.vercel.app
 1. **Main Interface**: The main screen displays all available drum pads.
-2. **Keyboard Keys**: Use the corresponding keyboard keys to trigger drum sounds.
-3. **Volume Slider**: Slide the volume control to adjust the sound intensity.
-4. **Mobile Interaction**: Tap the drum pads on the screen to play sounds.
+1. **Keyboard Keys**: Use the corresponding keyboard keys to trigger drum sounds.
+1. **Volume Slider**: Slide the volume control to adjust the sound intensity.
+1. **Mobile Interaction**: Tap the drum pads on the screen to play sounds.
 
-## Installation
+##° Installation
 
+Optionally you can download the repo and install the app.
 Make sure you have the following installed on your machine:
 
 - `Node.js`: Download and install `Node.js` from nodejs.org.

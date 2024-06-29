@@ -14,6 +14,7 @@ body {
   width: 100%;
   /* background: linear-gradient(145deg, #696868, #3f3f3f); */
   display: flex;
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -34,6 +35,14 @@ a {
   height: 100vh;
   margin: 0;
   padding: 2rem;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex start;
+  min-height: 100vh;
 }
 
 /* Stile del contenitore del drum machine */
@@ -190,6 +199,25 @@ a {
   border: 1px solid #ff8c09;
 }
 
+.footer {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  /* background-color: #ffffff;  */
+  padding: 10px;
+  font-size: 0.9rem;
+}
+
+.footer a {
+  color: #ff8c09; /* Colore arancione personalizzato */
+}
+
+.footer a:hover {
+  color: #fefefe; /* Colore arancione personalizzato */
+  transform: translateY(4px);
+}
+
 /* Media query */
 @media (max-width: 1920px) {
   #root {
@@ -198,7 +226,7 @@ a {
   }
 
   #drum-machine {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .drum {
@@ -231,5 +259,21 @@ a {
   .drum-pad {
     height: 3.8rem;
     width: 3.8rem;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1023px) {
+  .drum {
+    margin: 18vh auto; /* Centra verticalmente con un po' di margine in alto e in basso */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+}
+
+@media (min-width: 376px) and (max-width: 600px) {
+  .drum {
+    margin: 8vh auto; /* Centra verticalmente con un po' di margine in alto e in basso */
   }
 }

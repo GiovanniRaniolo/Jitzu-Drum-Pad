@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 
 const DrumPad = ({ text, src, volume, updateDisplayText }) => {
-  const [isActive, setIsActive] = React.useState(false);
+  const [isActive, setIsActive] = useState(false);
   const pad = useRef(null);
 
   const play = () => {
@@ -21,6 +21,7 @@ const DrumPad = ({ text, src, volume, updateDisplayText }) => {
     event.preventDefault();
     setIsActive(true);
     play();
+    simulateRelease();
   };
 
   const handleMouseUp = (event) => {
@@ -32,6 +33,7 @@ const DrumPad = ({ text, src, volume, updateDisplayText }) => {
     event.preventDefault();
     setIsActive(true);
     play();
+    simulateRelease();
   };
 
   const handleTouchEnd = (event) => {
@@ -39,17 +41,24 @@ const DrumPad = ({ text, src, volume, updateDisplayText }) => {
     setIsActive(false);
   };
 
-  const onKeyPress = (event) => {
-    if (event.key.toUpperCase() === text.toUpperCase()) {
-      setIsActive(true);
-      play();
-      setTimeout(() => {
-        setIsActive(false);
-      }, 100); // Timeout per simularne l'effetto di release
-    }
+  const simulateRelease = () => {
+    setTimeout(() => {
+      setIsActive(false);
+    }, 100); // Timeout per simulare l'effetto di rilascio
   };
 
-  React.useEffect(() => {
+  const onKeyPress = useCallback(
+    (event) => {
+      if (event.key.toUpperCase() === text.toUpperCase()) {
+        setIsActive(true);
+        play();
+        simulateRelease();
+      }
+    },
+    [text, play]
+  );
+
+  useEffect(() => {
     document.addEventListener("keydown", onKeyPress);
 
     return () => {
@@ -64,6 +73,7 @@ const DrumPad = ({ text, src, volume, updateDisplayText }) => {
       ref={pad}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >

@@ -171,16 +171,17 @@ a {
   background: #212121;
   transform: translateY(4px);
   box-shadow: 0 2px #ff8c09;
+  outline: none;
 }
 
 .drum-pad:focus {
   outline: none;
-  border: 1px solid #ff8c09;
+  /* border: 1px solid #ff8c09; */
 }
 
 .drum-pad:focus-visible {
   outline: none;
-  border: 1px solid #ff8c09;
+  /* border: 1px solid #ff8c09; */
 }
 
 .drum-pad:hover {

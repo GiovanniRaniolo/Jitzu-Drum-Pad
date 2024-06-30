@@ -666,10 +666,6 @@ Jitzu Drum Pad serves as an excellent exercise for practicing React programming,
 
 ## Future Improvements
 
-Future iterations of Jitzu DrumPad could explore additional features such as:
-
-## Future Improvements
-
 Future iterations of Jitzu Drum Pad could explore additional features such as:
 
 - **Low Latency Audio Playback**: Improve the audio playback latency by leveraging Web Audio API or specialized audio libraries such as Howler.js or Tone.js. These technologies can help achieve near-real-time audio playback, reducing delays between user input and sound output.

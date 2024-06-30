@@ -1,7 +1,5 @@
 /* Stile della griglia dei drum pad */
-
 .drum-pads {
-  /* transform: perspective(100em) rotateX(10deg); */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   /* gap: 1rem; */
@@ -42,12 +40,10 @@
 
 .drum-pad:focus {
   outline: none;
-  /* border: 1px solid #ff8c09; */
 }
 
 .drum-pad:focus-visible {
   outline: none;
-  /* border: 1px solid #ff8c09; */
 }
 
 .drum-pad:hover {
@@ -56,7 +52,7 @@
   border: 1px solid #ff8c09;
 }
 
-/* Media query */
+/* Media queries */
 @media (max-width: 1920px) {
   .drum-pads {
     max-width: 80%;

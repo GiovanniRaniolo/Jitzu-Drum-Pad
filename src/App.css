@@ -1,11 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap");
 
-/* Reset */
+/* Reset & Typography*/
 * {
   box-sizing: border-box;
 }
 
-/* Stile generale del corpo */
 body {
   margin: 0;
   font-family: "Handjet", sans-serif;

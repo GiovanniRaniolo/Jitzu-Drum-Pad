@@ -36,7 +36,7 @@ const bankOne = [
   { keyCode: 78, keyTrigger: "N", id: "crash", url: "/samples/crash.mp3" },
 ];
 
-const DrumMachine = ({ displayTextDefault = "Jitzu Drum Pad App" }) => {
+const DrumMachine = ({ displayTextDefault = "push some beat!" }) => {
   const volumeHandler = useRef(null);
   const iconVolume = useRef(null);
   const displayVolumeValue = useRef(null);

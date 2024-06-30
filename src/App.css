@@ -48,7 +48,6 @@ a {
 
 /* Stile del contenitore del drum machine */
 .drum {
-  /* background: linear-gradient(145deg, #2e2e2e, #323232); */
   background: rgb(67, 66, 66);
   background: linear-gradient(
     180deg,
@@ -93,7 +92,8 @@ a {
   margin-top: 1rem;
   margin-bottom: 1rem;
   border-radius: 0.5rem;
-  background: black;
+  background: rgb(8, 8, 8);
+  border: 4px solid black;
   width: 94%;
 }
 
@@ -101,9 +101,9 @@ a {
 .drum-display h1 {
   margin-top: 4px;
   margin-bottom: 4px;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-style: bold;
-  font-weight: 400;
+  font-weight: 350;
   color: #ff8c09;
 }
 
@@ -132,6 +132,8 @@ a {
   margin: 0 0.25rem;
   width: 100%;
   appearance: none;
+  background: rgb(8, 8, 8);
+  border: 4px solid black;
 }
 
 /* Stile del thumb del range */

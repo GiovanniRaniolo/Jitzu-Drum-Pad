@@ -223,21 +223,168 @@ The `DrumMachine.jsx` component manages the main structure of the application, r
 92 | export default DrumMachine;
 ```
 
+The `DrumMachine` component is designed to create a drum machine with various drum sounds and a volume control.
+
+#### Import Statements
+
+The code imports necessary React hooks (`useState`, `useEffect`, `useRef`) and the `DrumPad` component from the `./DrumPad` file. It also imports the CSS file `../App.css`.
+
+```jsx
+import React, { useState, useEffect, useRef } from "react";
+import DrumPad from "./DrumPad";
+import "../App.css";
+```
+
+#### `bankOne` Constant
+
+This is an array of objects representing different drum sounds. Each object has properties like `keyCode`, `keyTrigger`, `id`, `url`, which correspond to the key code, key trigger, unique identifier, and audio file URL of the drum sound, respectively.
+
+```jsx
+`const bankOne = [
+  { keyCode: 52, keyTrigger: "4", id: "stab-1", url: "/samples/stab-1.mp3" },
+  { keyCode: 53, keyTrigger: "5", id: "stab-2", url: "/samples/stab-2.mp3" },
+  { keyCode: 54, keyTrigger: "6", id: "stab-3", url: "/samples/stab-3.mp3" },
+  { keyCode: 55, keyTrigger: "7", id: "noise", url: "/samples/noise.mp3" },
+  { keyCode: 69, keyTrigger: "E", id: "hat-2", url: "/samples/hat-2.mp3" },
+  { keyCode: 82, keyTrigger: "R", id: "kick-1", url: "/samples/kick-1.mp3" },
+  { keyCode: 89, keyTrigger: "Y", id: "kick-2", url: "/samples/kick-2.mp3" },
+  { keyCode: 85, keyTrigger: "U", id: "hat-1", url: "/samples/hat-1.mp3" },
+  { keyCode: 68, keyTrigger: "D", id: "snare-1", url: "/samples/snare-1.mp3" },
+  { keyCode: 70, keyTrigger: "F", id: "tambourine", url: "/samples/tambourine.mp3" },
+  { keyCode: 71, keyTrigger: "G", id: "shaker-1", url: "/samples/shaker-1.mp3" },
+  { keyCode: 72, keyTrigger: "H", id: "snare-2", url: "/samples/snare-2.mp3" },
+  { keyCode: 88, keyTrigger: "X", id: "shaker-2", url: "/samples/shaker-2.mp3" },
+  { keyCode: 67, keyTrigger: "C", id: "rim", url: "/samples/rim.mp3" },
+  { keyCode: 66, keyTrigger: "B", id: "bongo-2", url: "/samples/bongo-2.mp3" },
+  { keyCode: 78, keyTrigger: "N", id: "crash", url: "/samples/crash.mp3" },
+];
+```
+
+#### `DrumMachine` Component
+
+This is the main component of the drum machine. It takes an optional prop `displayTextDefault` with a default value of "push some beat!".
+
+```jsx
+const DrumMachine = ({ displayTextDefault = "push some beat!" }) => {
+```
+
 #### `useState` Hook
 
-The `useState` hook in `DrumMachine.jsx` is used to manage the state of the `volumeValue` variable, initializing it to 50. It provides a function `setVolumeValue` to update its value based on user interaction with the volume slider.
+The `useState` hook is used to manage the state of the `volumeValue` variable, initializing it to 50. It provides a function `setVolumeValue` to update its value based on user interaction with the volume slider.
+
+```jsx
+const [volumeValue, setVolumeValue] = useState(50);
+const [displayText, setDisplayText] = useState(displayTextDefault);
+```
 
 #### `useRef` Hook
 
 The `useRef` hook creates references (`volumeHandler`, `iconVolume`, `displayVolumeValue`) used for manipulating DOM elements related to volume control, such as the slider and display elements.
 
+```jsx
+const volumeHandler = useRef(null);
+const iconVolume = useRef(null);
+const displayVolumeValue = useRef(null);
+```
+
 #### `updateDisplayText` Function
 
 The `updateDisplayText` function updates the display text in the drum machine interface based on user interactions with the drum pads, indicating which sound is being played.
 
-#### `onVolumeChanged Function`
+```jsx
+const updateDisplayText = (text) => {
+  setDisplayText(text);
+};
+```
+
+#### `onVolumeChanged` Function
 
 The `onVolumeChanged` function is called when the user adjusts the volume slider. It updates the `volumeValue` state and adjusts the opacity of the volume display element to provide visual feedback.
+
+```jsx
+const onVolumeChanged = (event) => {
+  const value = Number.parseInt(event.target.value, 10);
+  const displayVolumeValueElm = displayVolumeValue.current;
+
+  displayVolumeValueElm.style.setProperty("opacity", 1);
+  setTimeout(() => {
+    displayVolumeValueElm.style.setProperty("opacity", 0);
+  }, 1000);
+
+  setVolumeValue(value);
+};
+```
+
+#### `onMouseLeaveInput` Function
+
+The `onMouseLeaveInput` function hides the volume value display element after a delay when the mouse leaves the volume slider.
+
+```jsx
+const onMouseLeaveInput = () => {
+  setTimeout(() => {
+    displayVolumeValue.current.style.setProperty("opacity", 0);
+  }, 1000);
+};
+```
+
+#### Rendering
+
+The component renders the drum machine interface, including the display, control panel, and drum pads. The drum pads are generated using the `map` function, passing the necessary props to the `DrumPad` component.
+
+```jsx
+return (
+  <div className="drum" id="drum-machine">
+    <div className="drum-display" id="display">
+      <h1>{displayText}</h1>
+    </div>
+
+    <div className="drum-control">
+      <div className="drum-control-volumn">
+        <i className="" ref={iconVolume}></i>
+        <span> volume</span>
+        <span className="drum-control-volumn-value" ref={displayVolumeValue}>
+          {volumeValue}
+        </span>
+        <input
+          type="range"
+          ref={volumeHandler}
+          onChange={onVolumeChanged}
+          onMouseLeave={onMouseLeaveInput}
+          defaultValue={volumeValue}
+        />
+      </div>
+    </div>
+
+    <div className="drum-pads">
+      {bankOne.map((item, index) => (
+        <DrumPad
+          text={item.keyTrigger}
+          src={item.url}
+          key={item.id || index}
+          volume={volumeValue}
+          updateDisplayText={updateDisplayText}
+        />
+      ))}
+    </div>
+  </div>
+);
+```
+
+#### `DrumPad` Component Integration
+
+The `DrumMachine` component passes necessary props (`text`, `src`, `volume`, `updateDisplayText`) to each `DrumPad` component, ensuring each drum pad can trigger the appropriate sound and update the display text accordingly.
+
+```jsx
+<DrumPad
+  text={item.keyTrigger}
+  src={item.url}
+  key={item.id || index}
+  volume={volumeValue}
+  updateDisplayText={updateDisplayText}
+/>
+```
+
+Overall, the `DrumMachine` component creates a functional drum machine with various drum sounds and a volume control, providing an interactive experience for users to create beats.
 
 ### DrumPad Component
 
@@ -339,53 +486,179 @@ The `DrumPad.jsx` component represents an individual drum pad that users can int
 93 | export default DrumPad;
 ```
 
+The `DrumPad` component takes four props: `text` (the label of the drum pad), `src` (the source URL of the audio clip), `volume` (the volume level of the audio clip), and `updateDisplayText` (a function to update the display text).
+
 #### `useState` Hook
 
 The `useState` hook in `DrumPad.jsx` manages the `isActive` state, indicating whether the drum pad is currently active (clicked or triggered).
+
+```jsx
+const [isActive, setIsActive] = useState(false);
+```
+
+This hook initializes the `isActive` state to `false` and provides a `setIsActive` function to update this state.
 
 #### `useRef` Hook
 
 The `useRef` hook creates a reference (`pad`) to the `div` element containing the drum pad, allowing direct manipulation of its properties.
 
+```jsx
+const pad = useRef(null);
+```
+
+This reference is used to access the audio element within the drum pad and manipulate its properties directly.
+
 #### `play` Function
 
 The `play` function initializes and plays the audio associated with the drum pad when clicked or triggered via keyboard shortcut.
+
+```jsx
+const play = () => {
+  const audio = pad.current.querySelector("audio");
+
+  audio.currentTime = 0;
+  audio.volume = volume / 100;
+  audio.play();
+
+  updateDisplayText(
+    src.substring(src.lastIndexOf("/") + 1, src.lastIndexOf("."))
+  );
+};
+```
+
+This function:
+
+- Resets the audio playback to the start (`audio.currentTime = 0`).
+- Sets the audio volume based on the `volume` prop (`audio.volume = volume / 100`).
+- Plays the audio (`audio.play()`).
+- Updates the display text with the name of the sound being played (`updateDisplayText(...)`).
 
 #### `handleMouseDown` Function
 
 The `handleMouseDown` function sets `isActive` to true when the drum pad is clicked, plays the associated sound using the `play` function, and simulates a release effect with `simulateRelease`.
 
+```jsx
+const handleMouseDown = (event) => {
+  event.preventDefault();
+  setIsActive(true);
+  play();
+  simulateRelease();
+};
+```
+
 #### `handleMouseUp` Function
 
 The `handleMouseUp` function sets `isActive` to false when the mouse button is released, indicating the drum pad is no longer active.
+
+```jsx
+const handleMouseUp = (event) => {
+  event.preventDefault();
+  setIsActive(false);
+};
+```
 
 #### `handleTouchStart` Function
 
 The `handleTouchStart` function handles touch events on the drum pad, setting `isActive` to true, playing the sound, and simulating a release effect.
 
+```jsx
+const handleTouchStart = (event) => {
+  setIsActive(true);
+  play();
+  simulateRelease();
+};
+```
+
 #### `handleTouchEnd` Function
 
 The `handleTouchEnd` function sets `isActive` to false when the touch ends, indicating the drum pad is no longer active.
+
+```jsx
+const handleTouchEnd = (event) => {
+  event.preventDefault();
+  setIsActive(false);
+};
+```
 
 #### `simulateRelease` Function
 
 The `simulateRelease` function uses `setTimeout` to set `isActive` to false after a brief timeout, simulating the effect of releasing the drum pad.
 
+```jsx
+const simulateRelease = () => {
+  setTimeout(() => {
+    setIsActive(false);
+  }, 100); // Timeout to simulate the release effect
+};
+```
+
 #### `onKeyPress` Function
 
 The `onKeyPress` function is a callback triggered when a key corresponding to the drum pad's `text` prop is pressed. It sets `isActive` to true, plays the sound using the `play` function, and simulates a release effect.
+
+```jsx
+const onKeyPress = useCallback(
+  (event) => {
+    if (event.key.toUpperCase() === text.toUpperCase()) {
+      setIsActive(true);
+      play();
+      simulateRelease();
+    }
+  },
+  [text, play]
+);
+```
 
 #### `useEffect` Hook
 
 The `useEffect` hook in `DrumPad.jsx` adds and removes an event listener for keyboard presses when the component mounts and unmounts, respectively.
 
+```jsx
+useEffect(() => {
+  document.addEventListener("keydown", onKeyPress);
+
+  return () => {
+    document.removeEventListener("keydown", onKeyPress);
+  };
+}, [onKeyPress]);
+```
+
+This hook ensures that the `onKeyPress` event listener is properly set up when the component is mounted and removed when it is unmounted, preventing memory leaks and ensuring proper functionality.
+
 #### `Return` Statement
 
 The `return` statement renders the drum pad `div`, applying styles based on `isActive`, and includes an `audio` element for sound playback.
 
+```jsx
+return (
+  <div
+    className={`drum-pad ${isActive ? "active" : ""}`}
+    id={`drum-${text}`}
+    ref={pad}
+    onMouseDown={handleMouseDown}
+    onMouseUp={handleMouseUp}
+    onMouseLeave={handleMouseUp}
+    onTouchStart={handleTouchStart}
+    onTouchEnd={handleTouchEnd}
+  >
+    <audio className="clip" src={src} id={text}></audio>
+    {text}
+  </div>
+);
+```
+
+This JSX structure defines the drum pad's appearance and behavior:
+
+- The `className` is conditionally set based on the `isActive` state.
+- The `id` is set using the `text` prop.
+- The `ref` is assigned to `pad` to allow direct manipulation.
+- Event handlers are attached for mouse and touch events.
+- The `audio` element is included for playing the sound associated with the drum pad.
+- The `text` prop is displayed within the `div`.
+
 ## Development Environment
 
-Jitzu Drum Pad was developed using the Vite framework, which provided a fast and efficient development experience with React. Vite's quick build times and modern JavaScript module handling contributed to the seamless creation and deployment of this application.
+Jitzu Drum Pad was developed using [Vite](https://vitejs.dev), which provided a fast and efficient development experience with React. Vite's quick build times and modern JavaScript module handling contributed to the seamless creation and deployment of this application.
 
 ## Conclusion
 
@@ -398,12 +671,6 @@ Future iterations of Jitzu DrumPad could explore additional features such as:
 ## Future Improvements
 
 Future iterations of Jitzu Drum Pad could explore additional features such as:
-
-- **Customizable Drum Kits**: Allow users to create and save their own drum kit configurations. This feature would enable users to personalize their drum sets, selecting different samples for each drum pad.
-
-- **Recording and Playback**: Integrate functionality for recording drum patterns and playing them back.
-
-- **Visual Effects**: Enhance the user interface with additional visual feedback for a more engaging experience. Ideas include better visual cues for active drum pads and dynamic backgrounds that react to the beat.
 
 - **Low Latency Audio Playback**: Improve the audio playback latency by leveraging Web Audio API or specialized audio libraries such as Howler.js or Tone.js. These technologies can help achieve near-real-time audio playback, reducing delays between user input and sound output.
 
@@ -422,6 +689,12 @@ Future iterations of Jitzu Drum Pad could explore additional features such as:
     - **Synthesizers** for creating custom sounds.
     - **Effects chaining** for adding reverb, delay, and other audio effects.
     - **Sequencer** for programming complex drum patterns with ease.
+
+- **Customizable Drum Kits**: Allow users to create and save their own drum kit configurations. This feature would enable users to personalize their drum sets, selecting different samples for each drum pad.
+
+- **Recording and Playback**: Integrate functionality for recording drum patterns and playing them back.
+
+- **Visual Effects**: Enhance the user interface with additional visual feedback for a more engaging experience. Ideas include better visual cues for active drum pads and dynamic backgrounds that react to the beat.
 
 These enhancements will make Jitzu DrumPad not only a fun and educational tool but also a nice web platform for music and experimentation.
 

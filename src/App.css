@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap");
-/* Reset */
 
+/* Reset */
 * {
   box-sizing: border-box;
 }
@@ -12,12 +12,11 @@ body {
   font-weight: 300;
   letter-spacing: 0.1rem;
   width: 100%;
-  /* background: linear-gradient(145deg, #696868, #3f3f3f); */
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overflow-x: hidden;
 }
 
 a {

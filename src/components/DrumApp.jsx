@@ -50,12 +50,7 @@ const DrumMachine = ({ displayTextDefault = "Jitzu Drum Pad App" }) => {
 
   const onVolumeChanged = (event) => {
     const value = Number.parseInt(event.target.value, 10);
-    const iconVolumeElm = iconVolume.current;
     const displayVolumeValueElm = displayVolumeValue.current;
-
-    if (value === 0) iconVolumeElm.className = "fas fa-volume-off";
-    else if (value < 50) iconVolumeElm.className = "fas fa-volume-down";
-    else iconVolumeElm.className = "fas fa-volume-up";
 
     displayVolumeValueElm.style.setProperty("opacity", 1);
     setTimeout(() => {

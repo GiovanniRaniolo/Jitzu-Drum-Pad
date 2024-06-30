@@ -17,7 +17,8 @@
 .drum-pad {
   height: 6rem;
   width: 6rem;
-  font-size: 1em;
+  font-size: 1.2em;
+  font-weight: 300;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,7 +26,7 @@
   border: none;
   border-radius: 10px;
   background: linear-gradient(145deg, #181818, #252525);
-  box-shadow: 2px 4px #0f0f0f;
+  box-shadow: 1px 4px #0f0f0f;
   transition: all 0.1s;
   border: 1px solid rgb(7, 7, 7);
   cursor: pointer;

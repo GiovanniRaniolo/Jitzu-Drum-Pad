@@ -16,7 +16,7 @@
   align-items: stretch;
   width: 100%;
   position: fixed;
-  bottom: 28px;
+  bottom: 8px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 0.9rem;
@@ -31,32 +31,27 @@
   width: 30px;
   height: 30px;
   margin: 0 10px;
-  transition: transform 0.3s;
 }
 
-.logos img {
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  margin: 0 10px;
-  transition: transform 0.3s;
+.logos img:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s ease-out;
 }
 
 .footer {
   position: fixed;
-  bottom: 20px;
+  bottom: 0px;
   left: 50%;
   transform: translateX(-50%);
-  /* background-color: #ffffff;  */
   padding: 10px;
   font-size: 0.9rem;
 }
 
 .footer a {
-  color: #ff8c09; /* Colore arancione personalizzato */
+  color: #ff8c09;
+  text-decoration: underline;
 }
 
 .footer a:hover {
-  color: #fefefe; /* Colore arancione personalizzato */
-  transform: translateY(4px);
+  color: #11bcf5;
 }

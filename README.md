@@ -52,6 +52,7 @@ Jitzu Drum Pad App is a web application in React that allows you to play samples
   - [Conclusion](#conclusion)
   - [Future Improvements](#future-improvements)
   - [Contributing](#contributing)
+  - [License](#license)
 
 ---
 
@@ -704,3 +705,7 @@ Contributions to Jitzu DrumPad are encouraged! Whether you're fixing bugs, impro
 4.  Submit a pull request detailing the changes made and why they are necessary.
 
 Explore the code, experiment with modifications, and leverage Jitzu DrumPad to deepen your understanding of React development. Thank you for your interest and happy coding!
+
+## License
+
+This project is licensed under the MIT License. You are free to use, modify, and distribute this software as long as the original copyright notice and this permission notice are included in all copies or substantial portions of the software.
